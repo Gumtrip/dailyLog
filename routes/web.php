@@ -18,5 +18,5 @@ Route::combine([
     ,'/auth/login','/auth/loginViaCode',
     '/user/','/user/edit','/user/passwordReset'
 ], function () {
-    return view('web.index');
+    return view('index');
 });
