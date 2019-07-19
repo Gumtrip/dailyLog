@@ -14,7 +14,7 @@
 
 Route::combine([
     '/',
-    '/goals/create','/goals/:goal/edit','/goals/:goal/show'
+    '/goals/create','/goals/{goal}/edit','/goals/{goal}/show'
     ,'/auth/login','/auth/loginViaCode',
     '/user/','/user/edit','/user/passwordReset'
 ], function () {
