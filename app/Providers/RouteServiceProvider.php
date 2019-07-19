@@ -24,6 +24,12 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Route::macro('combine', function(array $uris, $action)
+        {
+            foreach ($uris as $uri) {
+                Route::get($uri, $action);
+            }
+        });
 
         parent::boot();
     }
