@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('*', function () {
-    return view('index');
+
+Route::combine([
+    '/',
+    '/goals/create','/goals/:goal/edit','/goals/:goal/show'
+    ,'/auth/login','/auth/loginViaCode',
+    '/user/','/user/edit','/user/passwordReset'
+], function () {
+    return view('web.index');
 });
