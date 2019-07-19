@@ -10,6 +10,6 @@
 <div id=app></div>
 <script type=text/javascript src={{asset('/static/js/manifest.de03f16a39bf93f79b51.js')}}></script>
 <script type=text/javascript src={{asset('/static/js/vendor.b42fc7d0977c6b837925.js')}}></script>
-<script type=text/javascript src={{asset('/static/js/app.3eca0968ecc1f6b258fc.js')}}></script>
+<script type=text/javascript src={{asset('/static/js/app.1cf8e0d7bb78feec6f97.js')}}></script>
 </body>
 </html>
