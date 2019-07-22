@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Frontend\Goal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\Controller;
 use App\Models\Goal\GoalCategory;
+use App\Http\Requests\Frontend\Goal\GoalCategoryRequest;
 use App\Transformers\Frontend\Goal\GoalCategoryTransformer;
 class GoalCategoryController extends Controller
 {
@@ -20,5 +21,16 @@ class GoalCategoryController extends Controller
         $query->where('user_id',$this->user->id);
         $goalCategories = $query->paginate(config('app.pagination'));
         return $this->response->paginator($goalCategories,new GoalCategoryTransformer());
+    }
+
+    public function store(GoalCategoryRequest $categoryRequest ,GoalCategory $goalCategory){
+        $goalCategory->fill($categoryRequest->all());
+        $goalCategory->save();
+        return $this->response->item($goalCategory,new GoalCategoryTransformer())->setStatusCode(201);
+    }
+
+    public function destroy(GoalCategory $goalCategory){
+        $goalCategory->delete();
+        return $this->response->noContent();
     }
 }
