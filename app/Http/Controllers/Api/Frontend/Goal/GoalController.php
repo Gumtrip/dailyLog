@@ -19,13 +19,14 @@ class GoalController extends Controller
 
     public function index(Request $request,Goal $goal){
         $query = $goal->query();
+        $pageSize = $request->page_size??config('app.pagination');
         if($this->user){
             $query->where('user_id',$this->user->id);
         }else{
             $query->whereNull('user_id');
         }
 
-        $goals = $query->paginate(config('app.pagination'));
+        $goals = $query->paginate($pageSize);
         return $this->response->paginator($goals,new GoalTransformer());
     }
 
