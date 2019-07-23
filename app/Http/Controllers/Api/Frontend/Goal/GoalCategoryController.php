@@ -18,15 +18,27 @@ class GoalCategoryController extends Controller
 
     public function index(GoalCategory $goalCategory){
         $query = $goalCategory->query();
-        $query->where('user_id',$this->user->id);
+//        $query->where('user_id',$this->user->id);
         $goalCategories = $query->paginate(config('app.pagination'));
         return $this->response->paginator($goalCategories,new GoalCategoryTransformer());
+    }
+
+
+    public function show(Request $request,GoalCategory $goalCategory){
+        return $this->response->item($goalCategory,new GoalCategoryTransformer());
     }
 
     public function store(GoalCategoryRequest $categoryRequest ,GoalCategory $goalCategory){
         $goalCategory->fill($categoryRequest->all());
         $goalCategory->save();
         return $this->response->item($goalCategory,new GoalCategoryTransformer())->setStatusCode(201);
+    }
+
+    public function update(Request $request,GoalCategory $goalCategory){
+        $data = $request->all();
+        $goalCategory->update($data);
+        return $this->response->item($goalCategory,new GoalCategoryTransformer());
+
     }
 
     public function destroy(GoalCategory $goalCategory){
