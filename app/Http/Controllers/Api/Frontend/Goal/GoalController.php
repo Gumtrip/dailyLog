@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Controller;
 use App\Models\Goal\Goal;
 use App\Transformers\Frontend\Goal\GoalTransformer;
 use App\Http\Requests\Frontend\Goal\GoalRequest;
-use Carbon\Carbon;
+
 class GoalController extends Controller
 {
     protected $user;
