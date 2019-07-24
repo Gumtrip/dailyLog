@@ -15,7 +15,6 @@ class AddUserIdToGoalCategories extends Migration
     {
         Schema::table('goal_categories', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned()->nullable()->after('title');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }
@@ -28,7 +27,6 @@ class AddUserIdToGoalCategories extends Migration
     public function down()
     {
         Schema::table('goal_categories', function (Blueprint $table) {
-            $table->dropForeign('goal_categories_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }
