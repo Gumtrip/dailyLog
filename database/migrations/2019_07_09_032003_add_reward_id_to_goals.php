@@ -15,7 +15,6 @@ class AddRewardIdToGoals extends Migration
     {
         Schema::table('goals', function (Blueprint $table) {
             $table->unsignedBigInteger('reward_id')->nullable()->after('remark');
-            $table->foreign('reward_id')->references('id')->on('rewards')->onDelete('cascade');
         });
     }
 
@@ -27,7 +26,7 @@ class AddRewardIdToGoals extends Migration
     public function down()
     {
         Schema::table('goals', function (Blueprint $table) {
-            $table->dropForeign('goals_reward_id_foreign');
+            $table->dropColumn('reward_id');
         });
     }
 }
