@@ -17,9 +17,7 @@ class CreateBonusLogsTable extends Migration
             $table->bigIncrements('id');
             $table->string('description',150)->nullable()->comment('描述');
             $table->unsignedBigInteger('goal_id')->nullable();
-            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('properties')->nullable();
             $table->timestamps();
         });
