@@ -17,7 +17,6 @@ class CreateGoalLogsTable extends Migration
             $table->bigIncrements('id');
             $table->string('description',150)->nullable()->comment('描述');
             $table->unsignedBigInteger('goal_id');
-            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
             $table->text('properties')->nullable();
             $table->timestamps();
         });
