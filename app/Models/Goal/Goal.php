@@ -8,7 +8,7 @@ use App\Models\User\User;
 use Carbon\Carbon;
 class Goal extends Model
 {
-    protected $fillable=['title','remark','mission_amount','mission_accomplish_amount','start_at','gain_at','end_at','done_at','cancel_at','fail_at'];
+    protected $fillable=['title','remark','mission_amount','mission_accomplish_amount','start_at','gain_at','end_at','done_at','cancel_at','fail_at','bonus'];
     protected $casts=[
 
     ];

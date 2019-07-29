@@ -57,6 +57,12 @@ $api->version('v1',[
             $api->get('goalLogs','GoalLogController@index');
 
 
+            $api->get('goalCategories','GoalCategoryController@index');
+            $api->get('goalCategories/{goalCategory}','GoalCategoryController@show');
+            $api->post('goalCategories','GoalCategoryController@store');
+            $api->patch('goalCategories/{goalCategory}','GoalCategoryController@update');
+            $api->delete('goalCategories','GoalCategoryController@destroy');
+
         });
     });
 });
