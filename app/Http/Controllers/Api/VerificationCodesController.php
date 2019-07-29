@@ -38,7 +38,7 @@ class VerificationCodesController extends Controller
             $code = str_pad(random_int(1, 9999), 4, 0, STR_PAD_LEFT);
             try {
                 $easySms->send($mobile, [
-                    'content' => '您的验证码是' . $code . '。如非本人操作，请忽略本短信'
+                    'content' => '【GT技术博客】您的验证码是' . $code . '。如非本人操作，请忽略本短信'
                 ]);
             } catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException  $exception) {
                 $message = $exception->getException('yunpian')->getMessage();
