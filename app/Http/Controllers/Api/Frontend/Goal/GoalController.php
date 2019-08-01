@@ -26,7 +26,7 @@ class GoalController extends Controller
             $query->whereNull('user_id');
         }
 
-        $goals = $query->paginate($pageSize);
+        $goals = $query->orderBy('id')->paginate($pageSize);
         return $this->response->paginator($goals,new GoalTransformer());
     }
 
