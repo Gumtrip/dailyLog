@@ -49,12 +49,17 @@ class GoalController extends Controller
             $currentAmount = $goal->mission_accomplish_amount+$amount;
             $missionAccomplishAmount = $currentAmount>=0?$currentAmount:0;
             $data['mission_accomplish_amount'] = $missionAccomplishAmount;
+
+            if(is_null($goal->done_at)&&$missionAccomplishAmount>=$goal->mission_amount){
+                $data['done_at'] = now()->toDateString();
+            }
         }
         if($request->get_awards&&$goal->can_get_the_awards){
             $data['gain_at'] = now()->toDateTimeString();
             $user = $goal->user;
             $user->update(['bonus'=>($user->bonus+$goal->bonus)]);
         }
+
         $goal->update($data);
 
         return $this->response->item($goal,new GoalTransformer());

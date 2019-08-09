@@ -60,9 +60,7 @@ class GoalObserver
         $goalLog->goal()->associate($goal);
         $goalLog->save();
 
-        if(is_null($goal->done_at)&&$goal->is_reach_the_goal){
-            DB::table('goals')->where('id',$goal->id)->update(['done_at'=>now()]);
-        }
+
     }
 
     /**
