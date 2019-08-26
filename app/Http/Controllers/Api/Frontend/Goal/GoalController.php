@@ -35,7 +35,6 @@ class GoalController extends Controller
     }
 
     public function store(GoalRequest $request,Goal $goal){
-
         $goal->fill($request->all());
         $goal->user()->associate($this->user);
         $goal->save();
@@ -44,7 +43,6 @@ class GoalController extends Controller
 
     public function update(GoalRequest $request,Goal $goal){
         $data = $request->all();
-
         if($amount=$request->amount){
             $currentAmount = $goal->mission_accomplish_amount+$amount;
             $missionAccomplishAmount = $currentAmount>=0?$currentAmount:0;

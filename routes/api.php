@@ -45,6 +45,13 @@ $api->version('v1',[
         });
 
 
+
+        $api->group(['namespace'=>'Seckill'],function($api){
+            $api->post('seckill/placeOrder','SeckillPlaceOrderController@placeOrderHandle');
+            $api->post('seckill/setStock/{seckillProduct}','SeckillProductController@setStock');
+            $api->get('seckill/getStock/{seckillProduct}','SeckillProductController@getStock');
+        });
+
         $api->group([
             'namespace' => 'Goal',
         ],function($api){
