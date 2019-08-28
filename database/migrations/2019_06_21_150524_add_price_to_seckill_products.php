@@ -14,7 +14,7 @@ class AddPriceToSeckillProducts extends Migration
     public function up()
     {
         Schema::table('seckill_products', function (Blueprint $table) {
-            $table->decimal('price',8,2)->default(0);
+            $table->decimal('price',8,2)->after('stock')->default(0)->comment('价格');
         });
     }
 
