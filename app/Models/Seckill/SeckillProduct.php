@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 class SeckillProduct extends Model
 {
-    protected $fillable=['name','stock','start_date','end_date','contact_phone','contact_name'];
+    protected $fillable=['name','stock','price','start_date','end_date','contact_phone','contact_name'];
 
     /** 当前时间早于秒杀时间，返回true
      * @return bool
      */
     public function getIsBeforeStartDateAttribute(){
-        return Carbon::now()->lt($this->start_date);
+
+        return now()->lt($this->start_date);
     }
 
     /** 当前时间晚于秒杀时间，返回true
@@ -20,6 +21,6 @@ class SeckillProduct extends Model
      */
 
     public function getIsAfterEndDateAttribute(){
-        return Carbon::now()->gt($this->end_date);
+        return now()->gt($this->end_date);
     }
 }

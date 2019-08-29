@@ -17,6 +17,7 @@ class SeckillProductTransformer extends TransformerAbstract
             'name'=>$seckillProduct->name,
             'start_date'=>$seckillProduct->start_date,
             'end_date'=>$seckillProduct->end_date,
+            'stock'=>$seckillProduct->stock,
         ];
     }
 }

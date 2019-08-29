@@ -16,7 +16,8 @@ Route::combine([
     '/',
     '/goals/create','/goals/{goal}/edit','/goals/{goal}/show'
     ,'/auth/login','/auth/loginViaCode',
-    '/user/','/user/edit','/user/passwordReset'
+    '/user/','/user/edit','/user/passwordReset',
+    'seckill'
 ], function () {
     return view('index');
 });

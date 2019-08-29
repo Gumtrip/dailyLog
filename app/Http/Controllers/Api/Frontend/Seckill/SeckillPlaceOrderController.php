@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Seckill\SeckillOrder;
 use App\Models\Seckill\SeckillProduct;
 use App\Transformers\Frontend\Seckill\SeckillOrderTransformer;
-use App\Http\Requests\Api\Frontend\Seckill\SeckillPlaceOrderRequest;
+use App\Http\Requests\Frontend\Seckill\SeckillPlaceOrderRequest;
 class SeckillPlaceOrderController extends Controller
 {
     public function placeOrderHandle(SeckillPlaceOrderRequest $request){
@@ -44,18 +44,15 @@ class SeckillPlaceOrderController extends Controller
 
             $item->save();
             //减库存
-            $this->decreaseStock($seckillProduct,$amount);
-
+            $item->decrement('stock',$amount);
+            \Cache::decrement('seckillProduct-'.$seckillProduct);
 //订单项与sku 关联
 
             return $order;
         });
-        return $this->response->item($order,new SeckillOrderTransformer);
+        return $this->response->item($order,new SeckillOrderTransformer)->setStatusCode(201);
     }
 
 
-    public function decreaseStock($product,$amount){
-        $product->decrement('stock',$amount);
-        \Cache::decrement('seckillProduct-'.$product->id);
-    }
+
 }
