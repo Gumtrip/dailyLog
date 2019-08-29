@@ -44,8 +44,8 @@ class SeckillPlaceOrderController extends Controller
 
             $item->save();
             //减库存
-            $item->decrement('stock',$amount);
-            \Cache::decrement('seckillProduct-'.$seckillProduct);
+            $seckillProduct->decrement('stock',$amount);
+            \Cache::decrement('seckillProduct-'.$seckillProduct->id);
 //订单项与sku 关联
 
             return $order;
