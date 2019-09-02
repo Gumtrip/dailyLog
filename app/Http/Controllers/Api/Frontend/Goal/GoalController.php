@@ -27,6 +27,9 @@ class GoalController extends Controller
         }
 
         $goals = $query->orderBy('id')->paginate($pageSize);
+
+
+
         return $this->response->paginator($goals,new GoalTransformer());
     }
 
