@@ -82,16 +82,19 @@ $api->version('v1', [
 
         ], function ($api) {
 
-        $api->get('articles','ArticleController@index');
-        $api->get('articles/{article}','ArticleController@show');
-        $api->post('articles','ArticleController@store');
-        $api->patch('articles/{article}','ArticleController@update');
-        $api->delete('articles','ArticleController@destroy');
+
 
         $api->group([
             'namespace' => 'Article',
 
         ],function($api){
+
+            $api->get('articles','ArticleController@index');
+            $api->get('articles/{article}','ArticleController@show');
+            $api->post('articles','ArticleController@store');
+            $api->patch('articles/{article}','ArticleController@update');
+            $api->delete('articles','ArticleController@destroy');
+
             $api->get('articleCategories','ArticleCategoryController@index');
             $api->get('articleCategories/{articleCategory}','ArticleCategoryController@show');
             $api->post('articleCategories','ArticleCategoryController@store');
