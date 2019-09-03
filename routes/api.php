@@ -16,9 +16,9 @@ $api = app('Dingo\Api\Routing\Router');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-$api->version('v1',[
+$api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-],function($api){
+], function ($api) {
 
 
     $api->post('getCaptcha', 'CaptchaController@create');// 图片验证码
@@ -27,8 +27,8 @@ $api->version('v1',[
 
     $api->group([
         'namespace' => 'Frontend',
-        'middleware'=>['serializer:array','bindings']
-    ],function($api){
+        'middleware' => ['serializer:array', 'bindings']
+    ], function ($api) {
 
         $api->group(['namespace' => 'Auth', 'prefix' => 'auth'], function ($api) {
             $api->post('login', 'LoginController@login');
@@ -38,7 +38,7 @@ $api->version('v1',[
         });
 
         // 当前登录用户信息
-        $api->group(['namespace' => 'User','middleware' => 'api.auth'], function ($api) {
+        $api->group(['namespace' => 'User', 'middleware' => 'api.auth'], function ($api) {
             $api->post('user/me', 'UserController@me');
             $api->put('user/update', 'UserController@update');
             $api->put('user/passwordReset', 'UserController@passwordReset');
@@ -54,23 +54,51 @@ $api->version('v1',[
 
         $api->group([
             'namespace' => 'Goal',
-        ],function($api){
-            $api->get('goals','GoalController@index');
-            $api->get('goals/{goal}','GoalController@show');
-            $api->post('goals','GoalController@store');
-            $api->patch('goals/{goal}','GoalController@update');
-            $api->delete('goals','GoalController@destroy');
+        ], function ($api) {
+            $api->get('goals', 'GoalController@index');
+            $api->get('goals/{goal}', 'GoalController@show');
+            $api->post('goals', 'GoalController@store');
+            $api->patch('goals/{goal}', 'GoalController@update');
+            $api->delete('goals', 'GoalController@destroy');
 
-            $api->get('goalLogs','GoalLogController@index');
+            $api->get('goalLogs', 'GoalLogController@index');
 
 
-            $api->get('goalCategories','GoalCategoryController@index');
-            $api->get('goalCategories/{goalCategory}','GoalCategoryController@show');
-            $api->post('goalCategories','GoalCategoryController@store');
-            $api->patch('goalCategories/{goalCategory}','GoalCategoryController@update');
-            $api->delete('goalCategories','GoalCategoryController@destroy');
+            $api->get('goalCategories', 'GoalCategoryController@index');
+            $api->get('goalCategories/{goalCategory}', 'GoalCategoryController@show');
+            $api->post('goalCategories', 'GoalCategoryController@store');
+            $api->patch('goalCategories/{goalCategory}', 'GoalCategoryController@update');
+            $api->delete('goalCategories', 'GoalCategoryController@destroy');
 
         });
     });
+
+
+    $api->group(
+        [
+            'namespace' => 'Backend',
+            'middleware' => ['serializer:array', 'bindings'],
+            'prefix' => 'backend'
+
+        ], function ($api) {
+
+        $api->get('articles','ArticleController@index');
+        $api->get('articles/{article}','ArticleController@show');
+        $api->post('articles','ArticleController@store');
+        $api->patch('articles/{article}','ArticleController@update');
+        $api->delete('articles','ArticleController@destroy');
+
+        $api->group([
+            'namespace' => 'Article',
+
+        ],function($api){
+            $api->get('articleCategories','ArticleCategoryController@index');
+            $api->get('articleCategories/{articleCategory}','ArticleCategoryController@show');
+            $api->post('articleCategories','ArticleCategoryController@store');
+            $api->patch('articleCategories/{articleCategory}','ArticleCategoryController@update');
+            $api->delete('articleCategories','ArticleCategoryController@destroy');
+        });
+    }
+    );
 });
 

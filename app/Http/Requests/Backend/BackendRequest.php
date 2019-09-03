@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Backend;
 
 use Dingo\Api\Http\FormRequest as BaseFormRequest;
 
-class FormRequest extends BaseFormRequest
+class BackendRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,12 +14,8 @@ class FormRequest extends BaseFormRequest
     public function authorize()
     {
         return true;
+//        return auth()->check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
 
 }
