@@ -17,5 +17,8 @@ class BackendRequest extends BaseFormRequest
 //        return auth()->check();
     }
 
+    public function rules(){
+        return [];
+    }
 
 }

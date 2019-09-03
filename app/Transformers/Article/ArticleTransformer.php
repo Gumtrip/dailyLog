@@ -3,7 +3,7 @@
 namespace App\Transformers\Article;
 
 use League\Fractal\TransformerAbstract;
-use App\Model\Article\Article;
+use App\Models\Article\Article;
 class ArticleTransformer extends TransformerAbstract
 {
     /**
