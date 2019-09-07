@@ -37,7 +37,7 @@ $api->version('v1', [
             $api->put('refreshToken', 'LoginController@refreshToken');
         });
 
-        // 当前登录用户信息
+// 当前登录用户信息
         $api->group(['namespace' => 'User', 'middleware' => 'api.auth'], function ($api) {
             $api->post('user/me', 'UserController@me');
             $api->put('user/update', 'UserController@update');
@@ -45,13 +45,14 @@ $api->version('v1', [
         });
 
 
-
-        $api->group(['namespace'=>'Seckill'],function($api){
-            $api->post('seckill/placeOrder','SeckillPlaceOrderController@placeOrderHandle');
-            $api->patch('seckill/seckillProduct/{seckillProduct}','SeckillProductController@update');
-            $api->get('seckill/seckillProduct/{seckillProduct}','SeckillProductController@show');
+//秒杀
+        $api->group(['namespace' => 'Seckill'], function ($api) {
+            $api->post('seckill/placeOrder', 'SeckillPlaceOrderController@placeOrderHandle');
+            $api->patch('seckill/seckillProduct/{seckillProduct}', 'SeckillProductController@update');
+            $api->get('seckill/seckillProduct/{seckillProduct}', 'SeckillProductController@show');
         });
 
+//任务
         $api->group([
             'namespace' => 'Goal',
         ], function ($api) {
@@ -71,6 +72,16 @@ $api->version('v1', [
             $api->delete('goalCategories', 'GoalCategoryController@destroy');
 
         });
+
+//文章
+        $api->group([
+            'namespace' => 'Article',
+        ], function ($api) {
+            $api->get('articles', 'ArticleController@index');
+            $api->get('articles/{article}', 'ArticleController@show');
+            $api->get('articleCategories', 'ArticleCategoryController@index');
+            $api->get('articleCategories/{articleCategory}', 'ArticleCategoryController@show');
+        });
     });
 
 
@@ -83,23 +94,40 @@ $api->version('v1', [
         ], function ($api) {
 
 
+        $api->group([
+            'namespace'=>'Auth',
+            'prefix' => 'auth'
+
+        ], function ($api) {
+            $api->post('login', 'LoginController@login');
+
+
+
+
+        });
+        $api->group([
+            'namespace'=>'Admin',
+            'prefix' => 'admin'
+        ], function ($api) {
+            $api->post('info', 'AdminController@info');
+        });
 
         $api->group([
             'namespace' => 'Article',
 
-        ],function($api){
+        ], function ($api) {
 
-            $api->get('articles','ArticleController@index');
-            $api->get('articles/{article}','ArticleController@show');
-            $api->post('articles','ArticleController@store');
-            $api->patch('articles/{article}','ArticleController@update');
-            $api->delete('articles','ArticleController@destroy');
+            $api->get('articles', 'ArticleController@index');
+            $api->get('articles/{article}', 'ArticleController@show');
+            $api->post('articles', 'ArticleController@store');
+            $api->patch('articles/{article}', 'ArticleController@update');
+            $api->delete('articles', 'ArticleController@destroy');
 
-            $api->get('articleCategories','ArticleCategoryController@index');
-            $api->get('articleCategories/{articleCategory}','ArticleCategoryController@show');
-            $api->post('articleCategories','ArticleCategoryController@store');
-            $api->patch('articleCategories/{articleCategory}','ArticleCategoryController@update');
-            $api->delete('articleCategories','ArticleCategoryController@destroy');
+            $api->get('articleCategories', 'ArticleCategoryController@index');
+            $api->get('articleCategories/{articleCategory}', 'ArticleCategoryController@show');
+            $api->post('articleCategories', 'ArticleCategoryController@store');
+            $api->patch('articleCategories/{articleCategory}', 'ArticleCategoryController@update');
+            $api->delete('articleCategories', 'ArticleCategoryController@destroy');
         });
     }
     );
