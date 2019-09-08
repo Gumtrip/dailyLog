@@ -90,19 +90,13 @@ $api->version('v1', [
             'namespace' => 'Backend',
             'middleware' => ['serializer:array', 'bindings'],
             'prefix' => 'backend'
-
         ], function ($api) {
-
 
         $api->group([
             'namespace'=>'Auth',
             'prefix' => 'auth'
-
         ], function ($api) {
             $api->post('login', 'LoginController@login');
-
-
-
 
         });
         $api->group([
@@ -114,9 +108,7 @@ $api->version('v1', [
 
         $api->group([
             'namespace' => 'Article',
-
         ], function ($api) {
-
             $api->get('articles', 'ArticleController@index');
             $api->get('articles/{article}', 'ArticleController@show');
             $api->post('articles', 'ArticleController@store');

@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',100)->comment('名称');
             $table->integer('article_category_id')->comment('分类ID');
-            $table->text('description')->comment('详情');
+            $table->text('content')->comment('详情');
             $table->timestamps();
         });
     }

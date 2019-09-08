@@ -16,11 +16,17 @@ class ArticleRequest extends FormRequest
     {
         $rules = [
             'title' => 'required|string',
-            'article_category_id' => 'required|string',
-            'description' => 'required|string',
+            'article_category_id' => 'required',
+            'content' => 'required|string',
         ];
 
         return $rules;
+
+    }
+    public function attributes(){
+        return [
+            'article_category_id'=>'文章分类'
+        ];
 
     }
 }
