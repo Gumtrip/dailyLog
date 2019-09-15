@@ -92,6 +92,9 @@ $api->version('v1', [
             'prefix' => 'backend'
         ], function ($api) {
 
+        // 图片资源
+        $api->post('images', 'Image\ImageController@store');
+
         $api->group([
             'namespace'=>'Auth',
             'prefix' => 'auth'
