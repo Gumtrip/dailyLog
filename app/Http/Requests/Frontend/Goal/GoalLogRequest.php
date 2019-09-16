@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Frontend\Goal;
 
-use App\Http\Requests\FormRequest;
+use App\Http\Requests\Frontend\FormRequest;
 
 class GoalLogRequest extends FormRequest
 {

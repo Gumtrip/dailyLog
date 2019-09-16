@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\Frontend\Auth;
 
-use App\Http\Requests\FormRequest;
+use App\Http\Requests\Frontend\FormRequest;
 
 class LoginViaCodeRequest extends FormRequest
 {
