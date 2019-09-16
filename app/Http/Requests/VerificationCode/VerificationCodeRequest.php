@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\VerificationCode;
 
-use App\Http\Requests\FormRequest;
+use App\Http\Requests\Frontend\FormRequest;
 
 class VerificationCodeRequest extends FormRequest
 {
