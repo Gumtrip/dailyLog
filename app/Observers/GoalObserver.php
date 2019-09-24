@@ -52,7 +52,7 @@ class GoalObserver
     {
         $logService = app(LogService::class);
         $properties = $logService->updateProperties($goal->only($goal->getFillable()),$goal->getOriginal());
-        $description = $logService->updateDescription($properties,$this->keyCn);
+        $description = $logService->generateDescription($properties,$this->keyCn);
         $goalLog = new GoalLog([
             'properties'=>$properties,
             'description'=>$description,

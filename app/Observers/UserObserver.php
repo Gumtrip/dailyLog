@@ -29,7 +29,7 @@ class UserObserver
         $logService = app(LogService::class);
         if($user->isDirty('bonus')){
             $properties = $logService->updateProperties($user->only(['bonus']),['bonus'=>$user->getOriginal('bonus')]);
-            $description = $logService->updateDescription($properties,$keyCn=['bonus'=>'奖金']);
+            $description = $logService->generateDescription($properties,$keyCn=['bonus'=>'奖金']);
             $bonusLog = new BonusLog([
                 'properties'=>$properties,
                 'description'=>$description,

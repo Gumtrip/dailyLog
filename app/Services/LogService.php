@@ -74,6 +74,13 @@ class LogService
         return $properties;
     }
 
+    /** 生成更新字段描述
+     * @param $newProperties
+     * @param $oldProperties
+     * @param $keyCn
+     * @return null|string
+     */
+
     function generateKeyLogCn($newProperties, $oldProperties, $keyCn)
     {
         if ($newProperties&& $oldProperties) {
@@ -91,16 +98,26 @@ class LogService
         }
     }
 
+    /** 检测新属性和旧属性，生成一个数组
+     * @param $newArray
+     * @param $oldArray
+     * @return array
+     */
 
-
-    public function updateProperties($newArray,$oldArray){
+    public function updateProperties($newArray,$oldArray):array{
         $changeAttributes = $this->detectChanges($newArray,$oldArray);
         $oldAttributes = $this->getOldChangeAttributes($changeAttributes,$oldArray);
         $properties = $this->getProperties($changeAttributes,$oldAttributes);
         return $properties;
     }
 
-    public function updateDescription($properties,$keyCn){
+    /** 根据新属性和旧属性，生成描述
+     * @param $properties
+     * @param $keyCn
+     * @return string
+     */
+
+    public function generateDescription($properties,$keyCn){
         $newArray =data_get($properties,'new',[]);
         $oldArray =data_get($properties,'old',[]) ;
         $description='【更新】';
