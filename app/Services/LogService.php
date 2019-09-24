@@ -11,7 +11,10 @@ namespace App\Services;
 
 class LogService
 {
-
+    /** 过滤掉updated_at,created_at 字段
+     * @param $model
+     * @return static
+     */
     function handleCreateAttributes($model)
     {
         $attributes = collect($model)->except(['updated_at', 'created_at']);
