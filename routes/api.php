@@ -100,6 +100,7 @@ $api->version('v1', [
             'prefix' => 'auth'
         ], function ($api) {
             $api->post('login', 'LoginController@login');
+            $api->delete('logout', 'LoginController@logout');
 
         });
         $api->group([
