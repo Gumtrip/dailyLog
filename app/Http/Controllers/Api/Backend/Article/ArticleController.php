@@ -29,7 +29,7 @@ class ArticleController extends Controller
     }
     public function store(ArticleRequest $request,Article $article){
         $article->fill($request->all());
-        $article->articleCategory()->associate($request->article_category_id);
+        $article->article_category()->associate($request->article_category_id);
         $article->save();
         return $this->response()->item($article,new ArticleTransformer())->setStatusCode(201);
     }

@@ -41,9 +41,10 @@ return [
             'provider' => 'users',
         ],
 
-        'admin'=>[
-            'driver' => 'passport',
+        'admin' => [
+            'driver' => 'jwt',
             'provider' => 'admins',
+            'hash' => false,
         ],
 
         'api' => [

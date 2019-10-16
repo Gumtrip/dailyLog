@@ -14,6 +14,7 @@ class LoginController extends Controller
 {
 
     use SMSVerify;
+    const GUARD='api';
 
     /** 登陆认证
      * @param LoginRequest $request
@@ -21,7 +22,7 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (!$token = \Auth::guard('api')->attempt($request->all())) {
+        if (!$token = \Auth::guard(self::GUARD)->attempt($request->all())) {
             return $this->response->errorUnauthorized('用户名或密码错误');
         }
         return $this->respondWithToken($token);
@@ -34,7 +35,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('api')->logout();
+        Auth::guard(self::GUARD)->logout();
         return $this->response->noContent();
     }
 
@@ -49,7 +50,7 @@ class LoginController extends Controller
         $existUser = User::where('mobile', $mobile)->first();
         $verificationKey = $request->verificationKey;
         $user = self::codeLoginHandle($existUser,$mobile,$verificationKey,$request->verificationCode);
-        $token = Auth::guard('api')->fromUser($user);
+        $token = Auth::guard(self::GUARD)->fromUser($user);
         return self::respondWithToken($token);
     }
 
@@ -88,7 +89,7 @@ class LoginController extends Controller
         }
 
         $user->update($attributes);
-        $token = Auth::guard('api')->fromUser($user);
+        $token = Auth::guard(self::GUARD)->fromUser($user);
         return self::respondWithToken($token);
     }
 
@@ -119,7 +120,7 @@ class LoginController extends Controller
 
     public function refreshToken()
     {
-        $token = Auth::guard('api')->refresh();
+        $token = Auth::guard(self::GUARD)->refresh();
         return self::respondWithToken($token,200);
     }
 
@@ -132,8 +133,8 @@ class LoginController extends Controller
 
     public function respondWithToken($token ='',$code=201)
     {
-        $token = $token ? $token : auth('api')->user();
-        $expiresIn = Auth::guard('api')->factory()->getTTL() * env('JWT_TTL',60);
+        $token = $token ? $token : auth(self::GUARD)->user();
+        $expiresIn = Auth::guard(self::GUARD)->factory()->getTTL() * env('JWT_TTL',60);
         $expiresDate = now()->addSeconds($expiresIn)->toDateTimeString();
         return $this->response->array([
             'token' => 'Bearer'.' '.$token,
