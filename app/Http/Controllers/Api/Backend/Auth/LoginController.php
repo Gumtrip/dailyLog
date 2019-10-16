@@ -41,18 +41,13 @@ class LoginController extends Controller
         return $this->response->array([
             'token' => 'Bearer'.' '.$token,
             'expires_in' => $expiresIn,
-            'expiresDate' => $expiresDate
+            'token_expired_at' => $expiresDate
         ])
             ->setStatusCode($code);
     }
 
     public function logout(){
-        Auth::guard(self::GUARD)->logout();
+//        Auth::guard(self::GUARD)->logout();
         return $this->response->noContent();
-
-        return $this->response->array([
-            'code' => 20000,
-            'data'=>'success'
-        ]);
     }
 }
