@@ -119,11 +119,11 @@ $api->version('v1', [
             $api->patch('articles/{article}', 'ArticleController@update');
             $api->delete('articles', 'ArticleController@destroy');
 
-            $api->get('articleCategories', 'ArticleCategoryController@index');
-            $api->get('articleCategories/{articleCategory}', 'ArticleCategoryController@show');
-            $api->post('articleCategories', 'ArticleCategoryController@store');
-            $api->patch('articleCategories/{articleCategory}', 'ArticleCategoryController@update');
-            $api->delete('articleCategories', 'ArticleCategoryController@destroy');
+            $api->get('article_categories', 'ArticleCategoryController@index');
+            $api->get('article_categories/{articleCategory}', 'ArticleCategoryController@show');
+            $api->post('article_categories', 'ArticleCategoryController@store');
+            $api->patch('article_categories/{articleCategory}', 'ArticleCategoryController@update');
+            $api->delete('article_categories', 'ArticleCategoryController@destroy');
         });
     }
     );
