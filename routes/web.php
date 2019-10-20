@@ -22,7 +22,7 @@ Route::combine([
     return view('index');
 });
 Route::combine([
-    '/backend'
+    '/admin'
 ], function () {
     return view('backend.index');
 });
