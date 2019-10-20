@@ -18,7 +18,11 @@ Route::combine([
     ,'/auth/login','/auth/loginViaCode',
     '/user/','/user/edit','/user/passwordReset',
     '/seckill',
-    '/backend'
 ], function () {
     return view('index');
+});
+Route::combine([
+    '/backend'
+], function () {
+    return view('backend.index');
 });
