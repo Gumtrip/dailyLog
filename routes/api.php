@@ -89,7 +89,7 @@ $api->version('v1', [
         [
             'namespace' => 'Backend',
             'middleware' => ['serializer:array', 'bindings'],
-            'prefix' => 'backend'
+            'prefix' => 'admin'
         ], function ($api) {
 
         // 图片资源
