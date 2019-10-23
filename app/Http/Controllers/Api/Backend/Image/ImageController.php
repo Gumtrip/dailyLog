@@ -11,9 +11,9 @@ use App\Libs\ImageUploadHandler;
 class ImageController extends Controller
 {
     public function store(ImageRquest $request,Image $image,ImageUploadHandler $uploader){
-        $result = $uploader->save($request->image, $request->model);
+        $result = $uploader->save($request->images, $request->model);
         return $this->response()->array($result);
-        $path = $request->file('image')->store('images', 'public');
+        $path = $request->file('images')->store('images', 'public');
         return $this->response()->json(['path' => Storage::disk('public')->url($path)]);
     }
 }
