@@ -15,8 +15,12 @@ class GoalCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title'=>'required'
-        ];
+        switch ($this->method()){
+
+            case 'POST':
+                return [
+                    'title'=>'required'
+                ];
+        }
     }
 }
