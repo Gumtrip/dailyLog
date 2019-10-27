@@ -16,6 +16,7 @@ $api = app('Dingo\Api\Routing\Router');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
 ], function ($api) {
@@ -44,7 +45,6 @@ $api->version('v1', [
             $api->put('user/passwordReset', 'UserController@passwordReset');
         });
 
-
 //秒杀
         $api->group(['namespace' => 'Seckill'], function ($api) {
             $api->post('seckill/placeOrder', 'SeckillPlaceOrderController@placeOrderHandle');
@@ -64,15 +64,12 @@ $api->version('v1', [
 
             $api->get('goalLogs', 'GoalLogController@index');
 
-
-            $api->get('goalCategories', 'GoalCategoryController@index');
-            $api->get('goalCategories/{goalCategory}', 'GoalCategoryController@show');
-            $api->post('goalCategories', 'GoalCategoryController@store');
-            $api->patch('goalCategories/{goalCategory}', 'GoalCategoryController@update');
-            $api->delete('goalCategories', 'GoalCategoryController@destroy');
-
+            $api->get('goal-categories', 'GoalCategoryController@index');
+            $api->get('goal-categories/{goalCategory}', 'GoalCategoryController@show');
+            $api->post('goal-categories', 'GoalCategoryController@store');
+            $api->patch('goal-categories/{goalCategory}', 'GoalCategoryController@update');
+            $api->any('goal-categories', 'GoalCategoryController@destroy');
         });
-
 //文章
         $api->group([
             'namespace' => 'Article',
@@ -83,8 +80,6 @@ $api->version('v1', [
             $api->get('articleCategories/{articleCategory}', 'ArticleCategoryController@show');
         });
     });
-
-
     $api->group(
         [
             'namespace' => 'Backend',

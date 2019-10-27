@@ -41,7 +41,7 @@ class GoalCategoryController extends Controller
 
     }
 
-    public function destroy(GoalCategory $goalCategory){
+    public function destroy(Request $request,GoalCategory $goalCategory){
         $goalCategory->delete();
         return $this->response->noContent();
     }

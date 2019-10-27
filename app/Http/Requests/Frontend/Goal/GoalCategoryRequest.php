@@ -21,6 +21,7 @@ class GoalCategoryRequest extends FormRequest
                 return [
                     'title'=>'required'
                 ];
+                break;
         }
     }
 }
