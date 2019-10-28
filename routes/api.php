@@ -60,7 +60,7 @@ $api->version('v1', [
             $api->get('goals/{goal}', 'GoalController@show');
             $api->post('goals', 'GoalController@store');
             $api->patch('goals/{goal}', 'GoalController@update');
-            $api->delete('goals', 'GoalController@destroy');
+            $api->delete('goals/{goal}', 'GoalController@destroy');
 
             $api->get('goalLogs', 'GoalLogController@index');
 
@@ -68,7 +68,7 @@ $api->version('v1', [
             $api->get('goal-categories/{goalCategory}', 'GoalCategoryController@show');
             $api->post('goal-categories', 'GoalCategoryController@store');
             $api->patch('goal-categories/{goalCategory}', 'GoalCategoryController@update');
-            $api->any('goal-categories', 'GoalCategoryController@destroy');
+            $api->delete('goal-categories/{goalCategory}', 'GoalCategoryController@destroy');
         });
 //文章
         $api->group([
@@ -89,7 +89,6 @@ $api->version('v1', [
 
         // 图片资源
         $api->post('images', 'Image\ImageController@store');
-
         $api->group([
             'namespace'=>'Auth',
             'prefix' => 'auth'

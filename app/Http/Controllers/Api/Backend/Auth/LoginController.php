@@ -36,7 +36,7 @@ class LoginController extends Controller
     public function respondWithToken($token ='',$code=201)
     {
         $token = $token ? $token : auth(self::GUARD)->user();
-        $expiresIn = Auth::guard(self::GUARD)->factory()->getTTL() * env('JWT_TTL',60);
+        $expiresIn = Auth::guard(self::GUARD)->factory()->getTTL() * config('api.jwt.ttl');
         $expiresDate = now()->addSeconds($expiresIn)->toDateTimeString();
         return $this->response->array([
             'token' => 'Bearer'.' '.$token,
